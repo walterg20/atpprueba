@@ -1,0 +1,19 @@
+@if (href) {
+  <a [class]="classes" [href]="href" [attr.aria-disabled]="disabled ? 'true' : null">
+    <ng-content />
+  </a>
+} @else if (routerLink) {
+  <a
+    [class]="classes"
+    [routerLink]="routerLink"
+    [queryParams]="queryParams"
+    [attr.aria-disabled]="disabled ? 'true' : null"
+  >
+    <ng-content />
+  </a>
+} @else {
+  <button [class]="classes" [type]="type" [disabled]="disabled">
+    <ng-content />
+  </button>
+}
+

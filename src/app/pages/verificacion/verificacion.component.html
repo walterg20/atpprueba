@@ -1,0 +1,60 @@
+<div class="mx-auto max-w-2xl space-y-6">
+  <app-card title="Verificación" subtitle="Lee el token de la URL y consulta MD_Verificar.">
+    <div class="grid gap-4">
+      <app-input
+        label="Token"
+        [value]="token()"
+        placeholder="Pegá el token en ?token=..."
+        [readonly]="true"
+        hint="Ej: /verificacion?token=adfasdfasfsadf"
+      />
+
+      <div class="flex items-center justify-end gap-2">
+        <app-button variant="secondary" [routerLink]="['/verificacion']" [queryParams]="{ token: token() }">
+          Actualizar URL
+        </app-button>
+        <app-button [disabled]="!canVerify()" (click)="verificar()">
+          @if (loading()) {
+            Consultando...
+          } @else {
+            Verificar
+          }
+        </app-button>
+      </div>
+
+      @if (error()) {
+        <div class="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">
+          {{ error() }}
+        </div>
+      }
+    </div>
+  </app-card>
+
+  @if (data()) {
+    <app-card title="Respuesta" subtitle="JSON devuelto por el servicio.">
+      <dl class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div>
+          <dt class="text-xs font-medium uppercase tracking-wide text-slate-500">Estado</dt>
+          <dd class="mt-1 text-sm font-semibold text-slate-900">{{ data()!.estado }}</dd>
+        </div>
+        <div>
+          <dt class="text-xs font-medium uppercase tracking-wide text-slate-500">Email</dt>
+          <dd class="mt-1 text-sm font-semibold text-slate-900">{{ data()!.email }}</dd>
+        </div>
+        <div>
+          <dt class="text-xs font-medium uppercase tracking-wide text-slate-500">Tipo Persona</dt>
+          <dd class="mt-1 text-sm font-semibold text-slate-900">{{ data()!.tipoPersona }}</dd>
+        </div>
+        <div>
+          <dt class="text-xs font-medium uppercase tracking-wide text-slate-500">Razón Social</dt>
+          <dd class="mt-1 text-sm font-semibold text-slate-900">{{ data()!.razonSocial }}</dd>
+        </div>
+      </dl>
+
+      <div class="mt-6 rounded-lg border border-slate-200 bg-slate-50 p-4">
+        <pre class="whitespace-pre-wrap break-words text-xs text-slate-700">{{ data() | json }}</pre>
+      </div>
+    </app-card>
+  }
+</div>
+
