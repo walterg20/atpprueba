@@ -11,6 +11,6 @@ import { CardComponent } from '../../shared/ui/card/card.component';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  readonly loginUrl = 'http://localhost:8081/ATPWebDesarrollo/servlet/mrlogin';
+  readonly loginUrl = 'https://atp-pruebas.ecom.com.ar/ATPWeb15Prueba/servlet/rdlogin';
 }
 
