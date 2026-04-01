@@ -45,7 +45,7 @@ export class VerificacionComponent {
     this.error.set(null);
     this.data.set(null);
 
-    console.log('[Verificacion] URL:', `${API_BASE_URL}/rest/MD_Verificar`, 'Body:', { Token: t });
+    console.log('[Verificacion] URL:', `${API_BASE_URL}/rest/RD_Verificar`, 'Body:', { Token: t });
 
     this.api
       .verificarToken(t)
