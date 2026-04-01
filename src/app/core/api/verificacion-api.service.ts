@@ -21,7 +21,7 @@ export class VerificacionApiService {
   private readonly http = inject(HttpClient);
 
   verificarToken(token: string): Observable<VerificacionResponse> {
-    return this.http.post<VerificacionResponse>(`${API_BASE_URL}/rest/MD_Verificar`, {
+    return this.http.post<VerificacionResponse>(`${API_BASE_URL}/rest/RD_Verificar`, {
       Token: token
     });
   }
