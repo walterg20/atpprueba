@@ -33,21 +33,39 @@
   @if (data()) {
     <app-card title="Respuesta" subtitle="JSON devuelto por el servicio.">
       <dl class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div class="sm:col-span-2">
+          <dt class="text-xs font-medium uppercase tracking-wide text-slate-500">OK</dt>
+          <dd class="mt-1 text-sm font-semibold" [class.text-emerald-700]="data()!.Ok" [class.text-red-700]="!data()!.Ok">
+            {{ data()!.Ok ? 'Sí' : 'No' }}
+          </dd>
+        </div>
+
+        <div class="sm:col-span-2">
+          <dt class="text-xs font-medium uppercase tracking-wide text-slate-500">Error</dt>
+          <dd class="mt-1 text-sm font-semibold text-slate-900">
+            {{ data()!.error || '-' }}
+          </dd>
+        </div>
+
         <div>
           <dt class="text-xs font-medium uppercase tracking-wide text-slate-500">Estado</dt>
-          <dd class="mt-1 text-sm font-semibold text-slate-900">{{ data()!.estado }}</dd>
+          <dd class="mt-1 text-sm font-semibold text-slate-900">{{ data()!.Result.estado || '-' }}</dd>
         </div>
         <div>
           <dt class="text-xs font-medium uppercase tracking-wide text-slate-500">Email</dt>
-          <dd class="mt-1 text-sm font-semibold text-slate-900">{{ data()!.email }}</dd>
-        </div>
-        <div>
-          <dt class="text-xs font-medium uppercase tracking-wide text-slate-500">Tipo Persona</dt>
-          <dd class="mt-1 text-sm font-semibold text-slate-900">{{ data()!.tipoPersona }}</dd>
+          <dd class="mt-1 text-sm font-semibold text-slate-900">{{ data()!.Result.email || '-' }}</dd>
         </div>
         <div>
           <dt class="text-xs font-medium uppercase tracking-wide text-slate-500">Razón Social</dt>
-          <dd class="mt-1 text-sm font-semibold text-slate-900">{{ data()!.razonSocial }}</dd>
+          <dd class="mt-1 text-sm font-semibold text-slate-900">{{ data()!.Result.ConRazsoc || '-' }}</dd>
+        </div>
+        <div>
+          <dt class="text-xs font-medium uppercase tracking-wide text-slate-500">CUIT</dt>
+          <dd class="mt-1 text-sm font-semibold text-slate-900">{{ data()!.Result.Concuit || '-' }}</dd>
+        </div>
+        <div>
+          <dt class="text-xs font-medium uppercase tracking-wide text-slate-500">Domicilio Electrónico</dt>
+          <dd class="mt-1 text-sm font-semibold text-slate-900">{{ data()!.Result.DomElectronico || '-' }}</dd>
         </div>
       </dl>
 

@@ -1,6 +1,6 @@
 {
-  "/ATPWebDesarrollo": {
-    "target": "http://localhost:8081",
+  "/ATPGestion15Prueba": {
+    "target": "https://atp-pruebas.ecom.com.ar",
     "secure": false,
     "changeOrigin": true
   }

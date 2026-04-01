@@ -51,7 +51,8 @@ export class VerificacionComponent {
           let msg = 'Error consultando MD_Verificar';
           if (err instanceof HttpErrorResponse) {
             if (err.status === 0) {
-              msg = 'No se pudo conectar al backend (CORS/red/servidor caido). Verifica proxy y que ATPWebDesarrollo este levantado en localhost:8081.';
+              msg =
+                'No se pudo conectar al backend (CORS/red/servidor caído). Verificá proxy y conectividad a atp-pruebas.ecom.com.ar.';
             } else if (typeof err.error?.message === 'string') {
               msg = err.error.message;
             } else if (typeof err.message === 'string') {
@@ -66,7 +67,11 @@ export class VerificacionComponent {
         finalize(() => this.loading.set(false))
       )
       .subscribe((res) => {
-        if (res) this.data.set(res);
+        if (!res) return;
+        this.data.set(res);
+        if (res.Ok === false && typeof res.error === 'string' && res.error.trim()) {
+          this.error.set(res.error);
+        }
       });
   }
 }

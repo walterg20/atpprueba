@@ -1,2 +1,2 @@
-export const API_BASE_URL = '/ATPWebDesarrollo/rest';
+export const API_BASE_URL = '/ATPGestion15Prueba';
 
