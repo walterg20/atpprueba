@@ -19,9 +19,9 @@ export type VerificacionResponse = {
 @Injectable({ providedIn: 'root' })
 export class VerificacionApiService {
   private readonly http = inject(HttpClient);
-
+  private readonly baseUrl = '/api/rd-verificar';
   verificarToken(token: string): Observable<VerificacionResponse> {
-    return this.http.post<VerificacionResponse>(`${API_BASE_URL}/rest/RD_Verificar`, {
+    return this.http.post<VerificacionResponse>(this.baseUrl, {
       Token: token
     });
   }

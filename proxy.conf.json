@@ -1,7 +1,7 @@
 {
   "/ATPGestion15Prueba": {
     "target": "https://atp-pruebas.ecom.com.ar",
-    "secure": false,
+    "secure": true,
     "changeOrigin": true
   }
 }
