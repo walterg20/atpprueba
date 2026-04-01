@@ -8,6 +8,7 @@ import { VerificacionApiService, VerificacionResponse } from '../../core/api/ver
 import { ButtonComponent } from '../../shared/ui/button/button.component';
 import { CardComponent } from '../../shared/ui/card/card.component';
 import { InputComponent } from '../../shared/ui/input/input.component';
+import { API_BASE_URL } from '../../core/config/api.config';
 
 @Component({
   selector: 'app-verificacion',
@@ -44,15 +45,19 @@ export class VerificacionComponent {
     this.error.set(null);
     this.data.set(null);
 
+    console.log('[Verificacion] URL:', `${API_BASE_URL}/rest/MD_Verificar`, 'Body:', { Token: t });
+
     this.api
       .verificarToken(t)
       .pipe(
         catchError((err) => {
-          let msg = 'Error consultando MD_Verificar';
+          let msg = 'Error consultando RD_Verificar';
           if (err instanceof HttpErrorResponse) {
             if (err.status === 0) {
               msg =
                 'No se pudo conectar al backend (CORS/red/servidor caído). Verificá proxy y conectividad a atp-pruebas.ecom.com.ar.';
+            } else if (err.status === 404) {
+              msg = `Endpoint no encontrado (404): ${err.url ?? 'sin URL'}. Revisá si es /rest/RD_Verificar.`;
             } else if (typeof err.error?.message === 'string') {
               msg = err.error.message;
             } else if (typeof err.message === 'string') {
